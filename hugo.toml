@@ -5,6 +5,7 @@ title = 'Blasio'
 theme = 'lume'
 
 [params]
+  copyrightName = 'David Di Blasio Jr.'
   themeCreditURL = 'https://github.com/david/Lume'
   manifestThemeColorDark = '#0f0f10'
 
