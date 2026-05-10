@@ -1,0 +1,37 @@
+{{ define "main" }}
+{{ $posts := where .Site.RegularPages "Type" "posts" }}
+{{ $latest := $posts.ByDate.Reverse | first 1 }}
+{{ $post := index $latest 0 }}
+
+{{ with $post }}
+{{ partial "post-content.html" . }}
+
+<section class="archive-latest">
+  <div class="archive-latest-header">
+    <a href="{{ "/posts/" | relURL }}">View all photos →</a>
+  </div>
+  <div class="archive-grid-mini">
+    {{ range ($posts.ByDate.Reverse | after 1 | first 12) }}
+    <article class="archive-card">
+      <a href="{{ .RelPermalink }}">
+        <img
+          src="{{ .Param "thumbnailUrl" }}"
+          alt="{{ .Title }}"
+          {{ with (.Param "thumbnailWidth" | default (.Param "imageWidth")) }}width="{{ . }}"{{ end }}
+          {{ with (.Param "thumbnailHeight" | default (.Param "imageHeight")) }}height="{{ . }}"{{ end }}
+          loading="lazy"
+          fetchpriority="low"
+          decoding="async"
+        >
+      </a>
+    </article>
+    {{ end }}
+  </div>
+</section>
+
+{{ end }}
+{{ end }}
+
+{{ define "scripts" }}
+{{ partial "script-asset.html" "threads.js" }}
+{{ end }}

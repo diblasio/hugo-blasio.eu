@@ -1,0 +1,16 @@
+<!-- Photo frame with Lumen "mat" treatment -->
+<div class="photo-frame-wrapper{{ if .class }} {{ .class }}{{ end }}">
+  <div class="photo-glow"></div>
+  <div class="photo-frame">
+    <img
+      src="{{ .imageUrl }}"
+      alt="{{ .alt }}"
+      {{ if .thumbnailUrl }}data-thumbnail="{{ .thumbnailUrl }}"{{ end }}
+      {{ with .width }}width="{{ . }}"{{ end }}
+      {{ with .height }}height="{{ . }}"{{ end }}
+      loading="{{ .loading | default "lazy" }}"
+      fetchpriority="{{ .fetchpriority | default "auto" }}"
+      decoding="async"
+    >
+  </div>
+</div>

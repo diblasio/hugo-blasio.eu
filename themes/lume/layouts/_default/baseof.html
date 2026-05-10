@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default "en" }}" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f0f10" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f5f0e8" media="(prefers-color-scheme: light)">
+  <script>
+    (function() {
+      var key = 'lumen-theme';
+      var stored = null;
+      try {
+        stored = window.localStorage.getItem(key);
+      } catch (e) {
+        stored = null;
+      }
+      var systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      var theme = stored === 'light' || stored === 'dark' ? stored : systemTheme;
+      document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.classList.add('no-transition');
+      window.requestAnimationFrame(function() {
+        document.documentElement.classList.remove('no-transition');
+      });
+    })();
+  </script>
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ .Param "description" | default .Site.Params.description | default "A photoblog" }}">
+
+  {{ partial "head.html" . }}
+
+  {{ partial "opengraph.html" . }}
+  {{ partial "structured-data.html" . }}
+
+  <link rel="icon" type="image/svg+xml" href="{{ "icon.svg" | relURL }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | relURL }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | relURL }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}">
+  <link rel="mask-icon" href="{{ "icon.svg" | relURL }}" color="#d8c4a3">
+  {{ with (.Site.Home.OutputFormats.Get "webmanifest") }}
+  <link rel="manifest" href="{{ .Permalink }}">
+  {{ end }}
+</head>
+<body>
+  {{ partial "nav.html" . }}
+  <main>
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ partial "footer.html" . }}
+  {{ partial "script-asset.html" "theme-toggle.js" }}
+  {{ block "scripts" . }}{{ end }}
+</body>
+</html>

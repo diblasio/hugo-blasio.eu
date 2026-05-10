@@ -1,0 +1,29 @@
+{{ define "main" }}
+{{ $grouped := .Pages.ByDate.Reverse.GroupByDate "January 2006" }}
+<section class="archive">
+  <div class="archive-months">
+    {{ range $group := $grouped }}
+    <section class="archive-month">
+      <h2 class="archive-month-title">{{ $group.Key }}</h2>
+      <div class="archive-grid">
+        {{ range $group.Pages }}
+        <article class="archive-card">
+          <a href="{{ .RelPermalink }}">
+            <img
+              src="{{ .Param "thumbnailUrl" }}"
+              alt="{{ .Title }}"
+              {{ with (.Param "thumbnailWidth" | default (.Param "imageWidth")) }}width="{{ . }}"{{ end }}
+              {{ with (.Param "thumbnailHeight" | default (.Param "imageHeight")) }}height="{{ . }}"{{ end }}
+              loading="lazy"
+              fetchpriority="low"
+              decoding="async"
+            >
+          </a>
+        </article>
+        {{ end }}
+      </div>
+    </section>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

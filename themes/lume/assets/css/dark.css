@@ -1,0 +1,26 @@
+/* Dark theme (default) */
+html[data-theme="dark"],
+html:not([data-theme]) {
+  --bg: #0a0a0b;
+  --surface: #141418;
+  --surface-2: #1d1d22;
+  --border: #2a2a30;
+  --border-strong: #3b3b44;
+
+  --text: #ededee;
+  --text-muted: #94949c;
+  --text-faint: #63636b;
+
+  --accent: #d8c4a3;
+  --accent-hover: #e2d2b7;
+  --accent-ink: #1a1610;
+
+  --success: #76c19a;
+  --warning: #d8b56f;
+  --error: #dc7d7d;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}

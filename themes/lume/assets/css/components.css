@@ -1,0 +1,234 @@
+/* Photo frame component */
+.photo-frame-wrapper {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.photo-frame {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: var(--space-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+  border-radius: 1px;
+  display: block;
+  background: var(--surface-2);
+  object-fit: cover;
+}
+
+.photo-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius);
+  background: radial-gradient(circle at center, color-mix(in srgb, var(--accent) 20%, transparent), transparent 72%);
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-smooth);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.photo-frame-wrapper:hover .photo-glow {
+  opacity: 1;
+}
+
+/* .photo-frame-wrapper:hover .photo-frame img {
+  transform: scale(1.01);
+  transition: transform 0.4s ease;
+} */
+
+/* Hero photo: no glow or scale on hover */
+.hero-photo .photo-frame-wrapper:hover .photo-glow {
+  opacity: 0;
+}
+
+.hero-photo .photo-frame-wrapper:hover .photo-frame img {
+  transform: none;
+}
+
+/* Archive card images */
+.archive-card img {
+  width: 100%;
+  height: auto;
+  min-height: 150px;
+  background: var(--surface-2);
+  object-fit: cover;
+  display: block;
+}
+
+/* EXIF panel */
+.exif-panel {
+  width: 100%;
+  border-top: 1px solid var(--border);
+  margin-top: var(--space-sm);
+  padding: var(--space-sm) 0;
+}
+
+.exif-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--space-md);
+}
+
+.exif-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.exif-label {
+  margin: 0;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+}
+
+.exif-value {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* Tag pills */
+.pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: 1px solid var(--accent);
+  transition: background 0.15s ease, border-color 0.15s ease;
+  text-decoration: none;
+}
+
+.pill:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+/* Theme toggle */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  padding: 0;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1;
+  transition: color 0.2s var(--ease-smooth), border-color 0.2s var(--ease-smooth), background-color 0.2s var(--ease-smooth);
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.theme-icon {
+  width: 1.05rem;
+  height: 1.05rem;
+  display: inline-flex;
+}
+
+.theme-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.theme-icon.dark {
+  display: none;
+}
+
+html[data-theme="light"] .theme-icon.light {
+  display: none;
+}
+
+html[data-theme="light"] .theme-icon.dark {
+  display: inline-flex;
+}
+
+/* Social threads */
+.social-threads {
+  margin: var(--space-xl) 0;
+  padding: var(--space-lg) 0;
+  border-top: 1px solid var(--border);
+}
+
+.social-threads h3 {
+  font-family: var(--font-serif);
+  font-style: italic;
+  margin-bottom: var(--space-lg);
+}
+
+.thread-section {
+  margin-bottom: var(--space-lg);
+}
+
+.thread-section h4 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.thread-loading {
+  color: var(--text-faint);
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.thread-error {
+  color: var(--error);
+  font-size: 0.9rem;
+}
+
+/* Utilities */
+.mono {
+  font-family: var(--font-mono);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mt-lg {
+  margin-top: var(--space-lg);
+}
+
+.mt-xl {
+  margin-top: var(--space-xl);
+}

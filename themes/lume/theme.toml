@@ -1,0 +1,13 @@
+name = "Lume"
+license = "MIT"
+licenselink = "https://github.com/david/Lume/blob/main/LICENSE"
+description = "A dark-first, photo-centric Hugo theme for personal photoblogs. Pairs well with the Lume publishing toolkit, but stands alone on any Hugo site."
+homepage = "https://github.com/david/Lume/tree/main/hugo-theme"
+demosite = "https://blasio.eu"
+tags = ["photoblog", "dark", "minimal", "photography", "personal"]
+features = ["dark-mode", "light-mode", "responsive", "social-threads", "exif", "masonry"]
+min_version = "0.128.0"
+
+[author]
+  name = "David Di Blasio"
+  homepage = "https://blasio.eu"

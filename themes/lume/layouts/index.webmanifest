@@ -1,0 +1,25 @@
+{{- $name := .Site.Title -}}
+{{- $short := .Site.Params.shortTitle | default .Site.Title -}}
+{{- $dark := .Site.Params.manifestThemeColorDark | default "#0f0f10" -}}
+{
+  "name": {{ $name | jsonify }},
+  "short_name": {{ $short | jsonify }},
+  "start_url": {{ "/" | absURL | jsonify }},
+  "display": "standalone",
+  "background_color": {{ $dark | jsonify }},
+  "theme_color": {{ $dark | jsonify }},
+  "icons": [
+    {
+      "src": {{ "android-chrome-192x192.png" | absURL | jsonify }},
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": {{ "android-chrome-512x512.png" | absURL | jsonify }},
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

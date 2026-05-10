@@ -1,0 +1,82 @@
+{{ $shutter := "" }}
+{{ $aperture := "" }}
+{{ $iso := "" }}
+{{ $focalLength := "" }}
+{{ $exposureCompensation := "" }}
+
+{{ with .photoDetails }}
+  {{ $inner := . }}
+  {{/* If the old format with parentheses is present, extract it */}}
+  {{ $paren := index (findRE `\(([^)]+)\)` .) 0 }}
+  {{ with $paren }}
+    {{ $inner = replace (replace . "(" "") ")" "" }}
+  {{ end }}
+  {{ $parts := split $inner "|" }}
+  {{ range $i, $part := $parts }}
+    {{ $trimmed := trim $part " " }}
+    {{ if eq $i 0 }}{{ $shutter = $trimmed }}{{ end }}
+    {{ if eq $i 1 }}{{ $aperture = $trimmed }}{{ end }}
+    {{ if eq $i 2 }}{{ $iso = $trimmed }}{{ end }}
+    {{ if eq $i 3 }}{{ $focalLength = $trimmed }}{{ end }}
+    {{ if eq $i 4 }}{{ $exposureCompensation = $trimmed }}{{ end }}
+  {{ end }}
+{{ end }}
+{{ with .exposureCompensation }}
+  {{ $numeric := printf "%v" . }}
+  {{ if not $exposureCompensation }}
+    {{ if hasPrefix $numeric "-" }}
+      {{ $exposureCompensation = printf "%s EV" $numeric }}
+    {{ else }}
+      {{ $exposureCompensation = printf "+%s EV" $numeric }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ if or .photoDetails .camera .lens $shutter $aperture $iso $focalLength $exposureCompensation }}
+<div class="exif-panel">
+  <dl class="exif-grid">
+    {{ with .camera }}
+    <div class="exif-item">
+      <dt class="exif-label">{{ i18n "exif_camera" | default "Camera" }}</dt>
+      <dd class="exif-value">{{ . }}</dd>
+    </div>
+    {{ end }}
+    {{ with .lens }}
+    <div class="exif-item">
+      <dt class="exif-label">{{ i18n "exif_lens" | default "Lens" }}</dt>
+      <dd class="exif-value">{{ . }}</dd>
+    </div>
+    {{ end }}
+    {{ with $shutter }}
+    <div class="exif-item">
+      <dt class="exif-label">{{ i18n "exif_shutter" | default "Shutter" }}</dt>
+      <dd class="exif-value mono">{{ . }}</dd>
+    </div>
+    {{ end }}
+    {{ with $aperture }}
+    <div class="exif-item">
+      <dt class="exif-label">{{ i18n "exif_aperture" | default "Aperture" }}</dt>
+      <dd class="exif-value mono">{{ . }}</dd>
+    </div>
+    {{ end }}
+    {{ with $iso }}
+    <div class="exif-item">
+      <dt class="exif-label">{{ i18n "exif_iso" | default "ISO" }}</dt>
+      <dd class="exif-value mono">{{ . }}</dd>
+    </div>
+    {{ end }}
+    {{ with $focalLength }}
+    <div class="exif-item">
+      <dt class="exif-label">{{ i18n "exif_focal_length" | default "Focal length" }}</dt>
+      <dd class="exif-value mono">{{ . }}</dd>
+    </div>
+    {{ end }}
+    {{ with $exposureCompensation }}
+    <div class="exif-item">
+      <dt class="exif-label">{{ i18n "exif_exposure_compensation" | default "Exposure" }}</dt>
+      <dd class="exif-value mono">{{ . }}</dd>
+    </div>
+    {{ end }}
+  </dl>
+</div>
+{{ end }}

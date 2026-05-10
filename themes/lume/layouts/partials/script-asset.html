@@ -1,0 +1,5 @@
+{{- $path := printf "js/%s" . -}}
+{{- with resources.Get $path -}}
+  {{- $js := . | resources.Minify | fingerprint -}}
+<script defer src="{{ $js.RelPermalink }}"></script>
+{{- end -}}

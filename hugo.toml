@@ -1,0 +1,28 @@
+baseURL = 'https://blasio.eu'
+languageCode = 'en-us'
+title = 'Blasio'
+
+theme = 'lume'
+
+[params]
+  themeCreditURL = 'https://github.com/david/Lume'
+  manifestThemeColorDark = '#0f0f10'
+
+[mediaTypes."application/manifest+json"]
+  suffixes = ['webmanifest']
+
+[outputFormats]
+  [outputFormats.webmanifest]
+    mediaType = 'application/manifest+json'
+    baseName = 'manifest'
+    isPlainText = true
+    notAlternative = true
+
+[permalinks]
+  posts = '/posts/:slug/'
+
+[outputs]
+  home = ['HTML', 'RSS', 'webmanifest']
+  section = ['HTML']
+  taxonomy = ['HTML']
+  term = ['HTML']

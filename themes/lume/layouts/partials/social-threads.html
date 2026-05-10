@@ -1,0 +1,23 @@
+{{ if or .Params.mastodon_thread .Params.bluesky_thread .Params.bluesky_url }}
+<section class="social-threads" aria-label="{{ i18n "social_replies" | default "Social replies" }}">
+  <h3>{{ i18n "social_replies" | default "Replies" }}</h3>
+
+  {{ with .Params.mastodon_thread }}
+  <div class="thread-section">
+    <h4>{{ i18n "social_mastodon" | default "Mastodon" }}</h4>
+    <div class="thread-content" data-mastodon-thread="{{ . }}">
+      <p class="thread-loading">{{ i18n "social_loading" | default "Loading replies…" }}</p>
+    </div>
+  </div>
+  {{ end }}
+
+  {{ if or .Params.bluesky_thread .Params.bluesky_url }}
+  <div class="thread-section">
+    <h4>{{ i18n "social_bluesky" | default "Bluesky" }}</h4>
+    <div class="thread-content" data-bluesky-thread="{{ .Params.bluesky_thread }}" data-bluesky-url="{{ .Params.bluesky_url }}">
+      <p class="thread-loading">{{ i18n "social_loading" | default "Loading replies…" }}</p>
+    </div>
+  </div>
+  {{ end }}
+</section>
+{{ end }}

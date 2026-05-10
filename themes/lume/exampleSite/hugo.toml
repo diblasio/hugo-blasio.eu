@@ -1,0 +1,30 @@
+baseURL = 'https://example.com'
+languageCode = 'en-us'
+title = 'Lumen'
+
+theme = 'lumen'
+
+[params]
+  description = 'A photoblog — framing light for the web.'
+  imageUrl = ''
+  tagline = ''
+  author = ''
+  shortTitle = ''
+  showThemeCredit = true
+  themeCreditURL = 'https://github.com/david/Lumen'
+
+[mediaTypes."application/manifest+json"]
+  suffixes = ['webmanifest']
+
+[outputFormats]
+  [outputFormats.webmanifest]
+    mediaType = 'application/manifest+json'
+    baseName = 'manifest'
+    isPlainText = true
+    notAlternative = true
+
+[permalinks]
+  posts = '/posts/:slug/'
+
+[outputs]
+  home = ['HTML', 'RSS', 'webmanifest']

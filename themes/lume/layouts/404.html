@@ -1,0 +1,8 @@
+{{ define "main" }}
+<div class="error-page">
+  <span class="dot"></span>
+  <h1>{{ i18n "error_title" | default "Nothing here" }}</h1>
+  <p>{{ i18n "error_description" | default "The page does not exist." }}</p>
+  <a href="{{ "/" | relURL }}" class="btn">{{ i18n "nav_home" | default "Home" }}</a>
+</div>
+{{ end }}

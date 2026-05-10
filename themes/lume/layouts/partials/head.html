@@ -1,0 +1,17 @@
+<link rel="preload" href="{{ "fonts/fraunces/fraunces-500.ttf" | relURL }}" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="{{ "fonts/fraunces/fraunces-500-italic.ttf" | relURL }}" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="{{ "fonts/ibm-plex-sans/ibm-plex-sans-300.ttf" | relURL }}" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="{{ "fonts/ibm-plex-sans/ibm-plex-sans-400.ttf" | relURL }}" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="{{ "fonts/ibm-plex-sans/ibm-plex-sans-600.ttf" | relURL }}" as="font" type="font/ttf" crossorigin>
+
+{{ $fonts := resources.Get "css/fonts.css" -}}
+{{ $tokens := resources.Get "css/tokens.css" -}}
+{{ $dark := resources.Get "css/dark.css" -}}
+{{ $light := resources.Get "css/light.css" -}}
+{{ $layout := resources.Get "css/layout.css" -}}
+{{ $components := resources.Get "css/components.css" -}}
+{{ $css := slice $fonts $tokens $dark $light $layout $components | resources.Concat "css/main.css" | resources.Minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">
+{{ with .OutputFormats.Get "RSS" }}
+<link rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" href="{{ .Permalink }}">
+{{ end }}

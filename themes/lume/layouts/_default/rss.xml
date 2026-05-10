@@ -1,0 +1,67 @@
+{{ "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  {{- $author := .Param "author" | default .Site.Params.author | default .Site.Title -}}
+  {{- $description := .Param "description" | default .Site.Params.description | default "A photoblog" -}}
+  {{- $pages := where .RegularPages "Type" "posts" -}}
+  {{- if .IsHome -}}
+    {{- $pages = where .Site.RegularPages "Type" "posts" -}}
+  {{- end -}}
+  {{- $items := first 20 ($pages.ByDate.Reverse) -}}
+  <channel>
+    <title>{{ .Site.Title }}</title>
+    <link>{{ .Permalink }}</link>
+    <description>{{ $description }}</description>
+    <language>{{ .Site.LanguageCode | default "en" }}</language>
+    <managingEditor>{{ $author }}</managingEditor>
+    <generator>Hugo</generator>
+    {{ with .Site.Lastmod }}
+    <lastBuildDate>{{ .Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</lastBuildDate>
+    {{ else }}
+    <lastBuildDate>{{ now.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</lastBuildDate>
+    {{ end }}
+    <image>
+      <url>{{ "icon.svg" | absURL }}</url>
+      <title>{{ .Site.Title }}</title>
+      <link>{{ .Permalink }}</link>
+    </image>
+    {{ with .OutputFormats.Get "RSS" }}
+    <atom:link href="{{ .Permalink }}" rel="self" type="{{ .MediaType.Type | default "application/rss+xml" }}" />
+    {{ end }}
+    {{ range $items }}
+    <item>
+      <title>{{ .Title }}</title>
+      <link>{{ .Permalink }}</link>
+      <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</pubDate>
+      {{ with .Lastmod }}
+      <lastBuildDate>{{ .Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</lastBuildDate>
+      {{ end }}
+      <author>{{ $author }}</author>
+      <guid>{{ .Permalink }}</guid>
+      {{ $img := .Param "imageUrl" -}}
+      {{ $title := .Title -}}
+      {{ $imgType := "image/jpeg" -}}
+      {{ with $img -}}
+        {{ $imgLower := lower . -}}
+        {{ if hasSuffix $imgLower ".png" }}{{ $imgType = "image/png" }}{{ end -}}
+        {{ if hasSuffix $imgLower ".gif" }}{{ $imgType = "image/gif" }}{{ end -}}
+        {{ if hasSuffix $imgLower ".webp" }}{{ $imgType = "image/webp" }}{{ end -}}
+      {{ end -}}
+      <description>{{ .Param "description" | default .Title | html }}</description>
+      {{ with $img -}}
+      <enclosure url="{{ . }}" type="{{ $imgType }}" />
+      {{- end }}
+      <content:encoded>
+        {{ "<![CDATA[" | safeHTML -}}
+        {{ with $img }}
+        <p><img src="{{ . }}" alt="{{ $title }}" /></p>
+        {{ end }}
+        {{ with .Param "location" }}
+        <p>📍 {{ . }}</p>
+        {{ end }}
+        {{ .Content }}
+        {{ "]]>" | safeHTML }}
+      </content:encoded>
+    </item>
+    {{ end }}
+  </channel>
+</rss>

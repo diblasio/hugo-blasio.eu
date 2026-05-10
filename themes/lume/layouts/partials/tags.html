@@ -1,0 +1,7 @@
+{{ with .tags -}}
+<div class="pill-group">
+  {{ range . -}}
+  <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="pill">{{ . }}</a>
+  {{- end }}
+</div>
+{{- end }}

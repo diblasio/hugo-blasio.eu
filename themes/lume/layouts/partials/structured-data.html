@@ -1,0 +1,62 @@
+{{- $description := .Param "description" | default .Site.Params.description | default .Site.Title -}}
+{{- $image := .Param "imageUrl" | default .Site.Params.imageUrl -}}
+{{- $authorName := .Param "author" | default .Site.Params.author | default .Site.Title -}}
+{{- $siteAuthor := .Site.Params.author | default "" -}}
+{{- $published := .Date.Format "2006-01-02T15:04:05Z07:00" -}}
+{{- $modified := .Lastmod.Format "2006-01-02T15:04:05Z07:00" -}}
+{{- $lang := .Site.LanguageCode | default "en-us" -}}
+{{- if .IsHome -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ .Site.Title | jsonify }},
+  "url": {{ .Permalink | jsonify }},
+  "description": {{ $description | jsonify }},
+  "inLanguage": {{ $lang | jsonify }}{{ if $siteAuthor }},
+  "author": {
+    "@type": "Person",
+    "name": {{ $siteAuthor | jsonify }},
+    "url": {{ .Site.BaseURL | jsonify }}
+  }{{ end }}
+}
+</script>
+{{- else -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ .Title | jsonify }},
+  "description": {{ $description | jsonify }},
+  "url": {{ .Permalink | jsonify }},
+  "datePublished": {{ $published | jsonify }},
+  "dateModified": {{ $modified | jsonify }},
+  "inLanguage": {{ $lang | jsonify }},
+  "author": {
+    "@type": "Person",
+    "name": {{ $authorName | jsonify }}{{ if $siteAuthor }},
+    "url": {{ $.Site.BaseURL | jsonify }}{{ end }}
+  },
+  "publisher":
+    {{- if $siteAuthor }}
+    {
+    "@type": "Person",
+    "name": {{ $siteAuthor | jsonify }},
+    "url": {{ .Site.BaseURL | jsonify }}
+    }
+    {{- else }}
+    {
+    "@type": "Organization",
+    "name": {{ .Site.Title | jsonify }}
+    }
+    {{- end -}}
+  {{ with $image }},
+  "image": {
+    "@type": "ImageObject",
+    "url": {{ . | jsonify }}{{ with $.Param "imageWidth" }},
+    "width": {{ . }}{{ end }}{{ with $.Param "imageHeight" }},
+    "height": {{ . }}{{ end }}
+  }{{ end }}
+}
+</script>
+{{- end -}}

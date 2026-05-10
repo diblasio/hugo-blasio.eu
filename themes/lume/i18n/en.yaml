@@ -1,0 +1,34 @@
+nav_home: "Home"
+nav_archive: "Archive"
+nav_about: "About"
+
+footer_colophon: "Colophon"
+footer_theme_name: "Lume"
+footer_theme_suffix: " theme"
+
+post_date_format: ":date_long"
+post_date_short: "Jan 2, 2006"
+post_date_archive: "January 2, 2006"
+post_prev: "← {{ .title }}"
+post_next: "{{ .title }} →"
+
+meta_separator: "·"
+meta_powered: "Powered by {lume} \u0026 {hugo}"
+
+social_replies: "Replies"
+social_mastodon: "Mastodon"
+social_bluesky: "Bluesky"
+social_loading: "Loading replies…"
+
+exif_camera: "Camera"
+exif_lens: "Lens"
+exif_shutter: "Shutter"
+exif_aperture: "Aperture"
+exif_iso: "ISO"
+exif_focal_length: "Focal length"
+exif_exposure_compensation: "Exposure"
+
+theme_toggle_label: "Toggle dark/light mode"
+
+error_title: "Nothing here"
+error_description: "The page does not exist."

@@ -1,0 +1,24 @@
+/* Light theme */
+html[data-theme="light"] {
+  --bg: #f7f2e8;
+  --surface: #fffcf7;
+  --surface-2: #f1eae0;
+  --border: #d9cfbf;
+  --border-strong: #c9bea9;
+
+  --text: #1a1713;
+  --text-muted: #5d5550;
+  --text-faint: #857a72;
+
+  --accent: #8a6947;
+  --accent-hover: #74563a;
+  --accent-ink: #faf5ec;
+
+  --success: #3f8960;
+  --warning: #a27936;
+  --error: #af4545;
+}
+
+html[data-theme="light"] body::after {
+  opacity: 0.015;
+}

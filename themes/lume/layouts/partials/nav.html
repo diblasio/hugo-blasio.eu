@@ -1,0 +1,16 @@
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="{{ "/" | relURL }}" class="wordmark">
+      <span class="dot"></span>
+      <span class="name">{{ .Site.Title }}</span>
+    </a>
+    <div class="nav-links">
+	<a href="{{ "/" | relURL }}" class="nav-link{{ if .IsHome }} active{{ end }}">{{ i18n "nav_home" | default "Home" }}</a>
+	<a href="{{ "/posts/" | relURL }}" class="nav-link{{ if eq .Type "posts" }} active{{ end }}">{{ i18n "nav_archive" | default "Archive" }}</a>
+	{{ with .Site.GetPage "about" }}
+	<a href="{{ .RelPermalink }}" class="nav-link">{{ i18n "nav_about" | default "About" }}</a>
+      {{ end }}
+      {{ partial "theme-toggle.html" . }}
+    </div>
+  </div>
+</nav>

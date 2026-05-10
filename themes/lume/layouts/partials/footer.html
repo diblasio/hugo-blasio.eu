@@ -1,0 +1,18 @@
+<footer class="site-footer">
+  <p>
+    <span class="copyright">2024–{{ now.Format "2006" }} {{ .Site.Params.copyrightName | default .Site.Title }}</span>
+    <span class="sep">·</span>
+    <a class="footer-link" href="/index.xml">RSS</a>
+    {{- if .Site.Params.colophonURL -}}
+    <span class="sep">·</span>
+    <a class="footer-link" href="{{ .Site.Params.colophonURL }}">{{ i18n "footer_colophon" | default "Colophon" }}</a>
+    {{- end -}}
+    {{- if (.Site.Params.showThemeCredit | default true) -}}
+    {{- $themeURL := .Site.Params.themeCreditURL | default "https://github.com/david/Lume" -}}
+    <span class="sep">·</span>
+    <span class="theme-credit">
+      <a href="{{ $themeURL }}" target="_blank" rel="noopener">{{ i18n "footer_theme_name" | default "Lumen" }}</a>{{ i18n "footer_theme_suffix" | default " theme" }} <span class="meta-sep">{{ i18n "meta_separator" | default "·" }}</span> <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>
+    </span>
+    {{- end -}}
+  </p>
+</footer>

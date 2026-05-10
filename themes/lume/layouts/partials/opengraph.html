@@ -1,0 +1,48 @@
+<!-- Open Graph meta tags -->
+{{ $title := cond .IsHome .Site.Title (printf "%s — %s" .Title .Site.Title) -}}
+{{ $description := .Param "description" | default .Site.Params.description | default (i18n "site_description" | default .Site.Title) -}}
+{{ $image := .Param "imageUrl" | default .Site.Params.imageUrl -}}
+{{ $canonical := .Param "canonical" | default .Permalink -}}
+{{ $locale := replace (.Site.LanguageCode | default "en-us") "-" "_" -}}
+{{ $published := "" -}}
+{{ $modified := "" -}}
+{{ if not .IsHome -}}
+  {{ $published = .Date.Format "2006-01-02T15:04:05Z07:00" -}}
+  {{ $modified = .Lastmod.Format "2006-01-02T15:04:05Z07:00" -}}
+{{ end -}}
+
+<meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+<meta property="og:locale" content="{{ $locale }}">
+{{- with $image }}
+<meta property="og:image" content="{{ . }}">
+<meta property="og:image:alt" content="{{ $.Param "altText" | default $title }}">
+{{- with $.Param "imageWidth" }}
+<meta property="og:image:width" content="{{ . }}">
+{{- end }}
+{{- with $.Param "imageHeight" }}
+<meta property="og:image:height" content="{{ . }}">
+{{- end }}
+{{- end }}
+{{ if and (not .IsHome) $published }}
+<meta property="article:published_time" content="{{ $published }}">
+{{ end }}
+{{ if and (not .IsHome) $modified }}
+<meta property="article:modified_time" content="{{ $modified }}">
+{{ end }}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $description }}">
+{{- with $image }}
+<meta name="twitter:image" content="{{ . }}">
+<meta name="twitter:image:alt" content="{{ $.Param "altText" | default $title }}">
+{{- end }}
+
+{{- with $canonical }}
+<link rel="canonical" href="{{ . }}">
+{{- end }}
