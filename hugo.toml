@@ -24,6 +24,9 @@ theme = 'lume'
 [permalinks]
   posts = '/posts/:slug/'
 
+[build]
+  buildFuture = true
+
 [outputs]
   home = ['HTML', 'RSS', 'webmanifest']
   section = ['HTML']
