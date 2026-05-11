@@ -5,8 +5,10 @@ title = 'Blasio'
 theme = 'lume'
 
 [params]
+  author = 'David Di Blasio Jr.'
+  description = 'A personal photoblog by David Di Blasio Jr.'
   copyrightName = 'David Di Blasio Jr.'
-  themeCreditURL = 'https://github.com/david/Lume'
+  themeCreditURL = 'https://github.com/diblasio/Lume'
   manifestThemeColorDark = '#0f0f10'
 
 [mediaTypes."application/manifest+json"]

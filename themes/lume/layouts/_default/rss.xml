@@ -20,7 +20,7 @@
     <lastBuildDate>{{ now.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</lastBuildDate>
     {{ end }}
     <image>
-      <url>{{ "icon.svg" | absURL }}</url>
+      <url>{{ "favicon-32x32.png" | absURL }}</url>
       <title>{{ .Site.Title }}</title>
       <link>{{ .Permalink }}</link>
     </image>
