@@ -14,13 +14,16 @@ photoDetails: "Apple iPhone 17 Pro back camera 6.765mm f/1.78 (1/640 | f/1.8 | I
 altText: "A serene pathway lined with lush greenery in Zamudio, Euskadi, inviting exploration under soft sunlight."
 imageUrl: "https://cdn.diblasio.social/static/photos/2026/20260521_091745-next-stop-bilbao.jpg"
 thumbnailUrl: "https://cdn.diblasio.social/static/photos/2026/thumbnails/20260521_091745-next-stop-bilbao.jpg"
-thumbnailHeight: 225
-thumbnailWidth: 300
-imageHeight: 1500
-imageWidth: 2000
+thumbnailHeight: 0
+thumbnailWidth: 0
+imageHeight: 0
+imageWidth: 0
 canonical: "https://blasio.eu/posts/next-stop-bilbao/"
 camera: "Apple iPhone 17 Pro"
 lens: "iPhone 17 Pro back camera 6.765mm f/1.78"
 exposureCompensation: 0
 location: "Zamudio, Euskadi, España"
+mastodon_thread: "https://diblasio.social/@david/116628424594293230"
+bluesky_thread: "at://did:plc:itx2ehfwhmij6tf55kxjt3ef/app.bsky.feed.post/3mmlhlfuqmj2r"
+bluesky_url: "https://bsky.app/profile/blasio.eu/post/3mmlhlfuqmj2r"
 ---
