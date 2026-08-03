@@ -22,4 +22,7 @@ camera: "FUJIFILMFILM X-T4"
 lens: "XF16-55mmF2.8 R LM WR"
 exposureCompensation: -1.33
 location: "Koudekerke, Zeeland, Nederland"
+mastodon_thread: "https://diblasio.social/@david/117031915918095590"
+bluesky_thread: "at://did:plc:itx2ehfwhmij6tf55kxjt3ef/app.bsky.feed.post/3ms6nlowkri2v"
+bluesky_url: "https://bsky.app/profile/blasio.eu/post/3ms6nlowkri2v"
 ---
