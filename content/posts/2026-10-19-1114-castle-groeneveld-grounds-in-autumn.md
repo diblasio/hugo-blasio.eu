@@ -24,4 +24,7 @@ camera: "FUJIFILMFILM X-T4"
 lens: "XF16-55mmF2.8 R LM WR"
 exposureCompensation: 0.67
 location: "Baarn, Utrecht, Nederland"
+mastodon_thread: "https://diblasio.social/@david/117467040079133097"
+bluesky_thread: "at://did:plc:itx2ehfwhmij6tf55kxjt3ef/app.bsky.feed.post/3my7v3bthkz22"
+bluesky_url: "https://bsky.app/profile/blasio.eu/post/3my7v3bthkz22"
 ---
