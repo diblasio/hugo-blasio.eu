@@ -24,4 +24,7 @@ camera: "FUJIFILMFILM X-T4"
 lens: "XF16-55mmF2.8 R LM WR"
 exposureCompensation: -1.33
 location: "'s-Graveland, Noord-Holland, Nederland"
+mastodon_thread: "https://diblasio.social/@david/117564528611305382"
+bluesky_thread: "at://did:plc:itx2ehfwhmij6tf55kxjt3ef/app.bsky.feed.post/3mzl6hzfegg2u"
+bluesky_url: "https://bsky.app/profile/blasio.eu/post/3mzl6hzfegg2u"
 ---
